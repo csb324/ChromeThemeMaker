@@ -11,16 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319190645) do
+ActiveRecord::Schema.define(version: 20160319195119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "themes", force: :cascade do |t|
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "user_id",                 null: false
-    t.string   "name",       default: ""
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "user_id",                               null: false
+    t.string   "name",                     default: ""
+    t.string   "frame_color"
+    t.string   "toolbar_color"
+    t.string   "tab_text_color"
+    t.string   "bookmark_text_color"
+    t.string   "ntp_background_color"
+    t.string   "ntp_text_color"
+    t.string   "button_background_color"
+    t.string   "button_color"
+    t.string   "ntp_background_alignment"
+    t.string   "ntp_background_repeat"
   end
 
   create_table "users", force: :cascade do |t|

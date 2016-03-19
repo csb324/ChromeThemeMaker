@@ -8,7 +8,24 @@
 </head>
 <body>
 
-<%= yield %>
+<div class="container">
+	<nav class="navbar">
+		<ul class="navbar__list">
+		<% if user_signed_in? %>
+			<li class="navbar__item"><%= link_to "new theme", new_theme_path %></li>
+			<li class="navbar__item"><%= link_to "log out", destroy_user_session_path %></li>
+
+		<% else %>
+			<li class="navbar__item"><%= link_to "sign in", new_user_session_path %></li>
+	    <li class="navbar__item"><%= link_to "sign up", new_user_registration_path %></li>
+    <% end %>
+		</ul>
+	</nav>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+
+	<%= yield %>
+</div>
 
 </body>
 </html>

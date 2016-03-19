@@ -1,1 +1,12 @@
 <h1>hello</h1>
+
+<ul class="theme-list">
+	<% if !@themes.blank? %>
+	  <% for theme in @themes %>
+			<li class="theme-list__theme"><%= theme.name %></li>
+	  <% end %>
+	<% else %>
+	  
+	<% end %>
+	<li class="theme-list__theme"><%= link_to "new theme", new_theme_path %></li>
+</ul>
