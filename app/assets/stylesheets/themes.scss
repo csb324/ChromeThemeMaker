@@ -1,15 +1,37 @@
 // Place all the styles related to the Themes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.theme-preview {
+
+.theme-snapshot {
 	position: relative;
+	display: inline-block;
 }
-	.theme-preview__name {
+	.theme-snapshot__name {
 		position: absolute;
 		top: 0;
 		left: 15px;
 	}
-	.theme-preview__image {
+	.theme-snapshot__image {
 		max-width: 500px;
 	}
-	
+	.theme-snapshot__buttons-area {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		.button {
+			display: block;
+			margin-bottom: 5px;
+		}
+	}
+
+
+
+
+
+.theme-list {
+	list-style: none;
+	padding: 0;
+}
+	.theme-list__item {
+		margin-bottom: 20px;
+	}

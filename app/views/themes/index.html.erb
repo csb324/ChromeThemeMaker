@@ -3,15 +3,33 @@
 <ul class="theme-list">
 	<% if !@themes.blank? %>
 	  <% for theme in @themes %>
-			<li class="theme-list__theme">
-				<div class="theme-preview">
-					<h2 class="theme-preview__name"><%= theme.name %></h2>
-					<img src="<%= theme.theme_background %>" alt="" class="theme-preview__image">
+			<li class="theme-list__item">
+
+
+				<div class="theme-snapshot">
+					<h2 class="theme-snapshot__name"><%= theme.name %></h2>
+					<div class="theme-snapshot__buttons-area">
+						
+						<%= link_to "Edit", edit_theme_path(theme), class: "button" %>
+						
+						<%= link_to "Delete", theme_path(theme), method: :delete, class: "button--delete button" %>
+						
+					</div>
+
+
+					<% if theme.theme_background.url %>
+						<img src="<%= theme.theme_background %>" alt="" class="theme-snapshot__image">
+					<% else %>
+						<%= image_tag "chrome_default.png", class: "theme-snapshot__image" %>
+					<% end %>
 				</div>
+
+
 			</li>
 	  <% end %>
 	<% else %>
 	  
 	<% end %>
-	<li class="theme-list__theme"><%= link_to "new theme", new_theme_path %></li>
+	<li class="theme-list__theme"><%= link_to "new theme", new_theme_path, class: "button" %></li>
 </ul>
+

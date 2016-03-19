@@ -6,3 +6,13 @@ body {
 	margin: 0 auto;
 	padding: 0 15px;
 }
+
+.button {
+	text-decoration: none;
+	padding: 5px;
+	background-color: blue;
+	color: #fff;
+}
+	.button--delete {
+		background-color: red;
+	}

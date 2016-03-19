@@ -15,7 +15,7 @@ class ThemesController < ApplicationController
 		@theme.user = current_user 
 
 		if @theme.save
-			redirect_to themes_path
+			redirect_to edit_theme_path(@theme)
 		else 
 			flash.now[:alert] = "There was a problem!"
 			render :new
@@ -23,12 +23,18 @@ class ThemesController < ApplicationController
 	end
 
 	def edit
+		@theme = Theme.find(params[:id])
 	end
 
 	def update
+		@theme = Theme.find(params[:id])
+
 	end
 
 	def destroy
+		@theme = Theme.find(params[:id])
+		@theme.destroy 
+		redirect_to themes_path
 	end
 
 	private
