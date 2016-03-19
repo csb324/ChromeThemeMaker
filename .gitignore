@@ -15,3 +15,6 @@
 
 # Ignore secrets
 /config/secrets.yml
+
+# Ignore uploads (they're not going to live here long term anyway)
+/public/uploads/*
