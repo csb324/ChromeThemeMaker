@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319195119) do
+ActiveRecord::Schema.define(version: 20160319202905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 20160319195119) do
     t.string   "button_color"
     t.string   "ntp_background_alignment"
     t.string   "ntp_background_repeat"
+    t.string   "theme_background"
+    t.string   "theme_frame"
+    t.string   "theme_toolbar"
   end
 
   create_table "users", force: :cascade do |t|

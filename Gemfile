@@ -47,4 +47,6 @@ group :development do
 end
 gem 'database_cleaner'
 gem 'devise'
+gem 'rmagick'
+gem 'carrierwave'
 

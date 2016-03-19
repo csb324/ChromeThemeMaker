@@ -3,7 +3,12 @@
 <ul class="theme-list">
 	<% if !@themes.blank? %>
 	  <% for theme in @themes %>
-			<li class="theme-list__theme"><%= theme.name %></li>
+			<li class="theme-list__theme">
+				<div class="theme-preview">
+					<h2 class="theme-preview__name"><%= theme.name %></h2>
+					<img src="<%= theme.theme_background %>" alt="" class="theme-preview__image">
+				</div>
+			</li>
 	  <% end %>
 	<% else %>
 	  
