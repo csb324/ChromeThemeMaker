@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Theme, '#index' do
+RSpec.describe Theme do
+
 	before(:each) do
 	  @user = User.new(email: "fake@fake.com", password: "fakepassword")
 	  @user.save
@@ -20,6 +21,8 @@ RSpec.describe Theme, '#index' do
 			theme.save 
 
 			theme.name = "My theme name"
+			expect(theme.changed?).to eq true 
+
 			theme.save 
 
 			expect(theme.name).to eq "My theme name"
