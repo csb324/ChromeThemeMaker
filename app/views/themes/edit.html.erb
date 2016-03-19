@@ -1,6 +1,15 @@
 <h1>Your Theme</h1>
 
+<p>full image:</p>
+<img src="<%= @theme.theme_background.url %>" alt="" class="theme-snapshot__image">
+
+<p>toolbar crop:</p>
+<img src="<%= @theme.theme_background.toolbar.url %>" alt="" class="theme-snapshot__image">
+
+<p>frame crop:</p>
+<img src="<%= @theme.theme_background.frame.url %>" alt="" class="theme-snapshot__image">
+
 <%= form_for @theme do |f| %>
 	<%= f.text_field :bookmark_text_color %>
-	<%= f.submit "Let's go" %>
+	<%= f.submit "Update" %>
 <% end %>

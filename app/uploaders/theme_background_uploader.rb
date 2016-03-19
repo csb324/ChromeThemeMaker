@@ -2,18 +2,18 @@
 class ThemeBackgroundUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
   # storage :fog
+  storage :aws 
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
+  # def store_dir
+  #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  # end
 
   def content_type_whitelist
     /image\//
@@ -32,6 +32,22 @@ class ThemeBackgroundUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+
+  process resize_to_fit: [2000, 2000]
+
+  version :frame do 
+    process resize_to_fill: [2000, 100, ::Magick::NorthGravity]
+  end
+
+  version :toolbar do 
+    process :crop 
+  end
+
+  def crop
+    manipulate! do |img|
+      img = img.crop(0, 200, 2000, 200)
+    end
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do

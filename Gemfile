@@ -37,6 +37,8 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec'
   gem 'rspec-rails'
+	gem 'database_cleaner'
+
 end
 
 group :development do
@@ -45,8 +47,13 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-gem 'database_cleaner'
+
+# Handle user accounts
 gem 'devise'
+
+# Image uploads and processing
 gem 'rmagick'
 gem 'carrierwave'
+gem 'carrierwave-aws'
+
 
