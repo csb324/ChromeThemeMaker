@@ -42,6 +42,20 @@ class ThemeBackgroundUploader < CarrierWave::Uploader::Base
     process :crop 
   end
 
+  version :preview do 
+    process :mask_chrome
+  end
+
+  def mask_chrome
+    manipulate! do |img|
+      img.resize_to_fit!(2000)
+      img.crop!(0,0,2000, 1686)
+      mask = Magick::Image.read("app/assets/images/chrome_mask.png").first
+
+      img.composite!(mask, 0, 0, Magick::ScreenCompositeOp)
+    end
+  end
+
   def crop
     manipulate! do |img|
       img = img.crop(0, 200, 2000, 200)

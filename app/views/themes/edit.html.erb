@@ -9,6 +9,8 @@
 <p>frame crop:</p>
 <img src="<%= @theme.theme_background.frame.url %>" alt="" class="theme-snapshot__image">
 
+<p>preview:</p>
+<img src="<%= @theme.theme_background.preview.url %>" alt="">
 <%= form_for @theme do |f| %>
 	<%= f.text_field :bookmark_text_color %>
 	<%= f.submit "Update" %>
