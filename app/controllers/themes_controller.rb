@@ -31,7 +31,7 @@ class ThemesController < ApplicationController
 	def download
 		@theme = Theme.find(params[:id])		
 		zip_data = @theme.create_zip
-	  send_data(zip_data, :type => 'application/zip', :filename => "theme.zip")
+	  send_data(zip_data, :type => 'application/zip', :filename => "#{@theme.name}-theme.zip")
 	end
 
 	def destroy

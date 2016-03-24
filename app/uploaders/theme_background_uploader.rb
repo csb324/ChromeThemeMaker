@@ -10,9 +10,10 @@ class ThemeBackgroundUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  # def store_dir
-  #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  # end
+  
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
 
   def content_type_whitelist
     /image\//
@@ -32,8 +33,7 @@ class ThemeBackgroundUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  process convert: 'png'
-  process resize_to_fit: [2000, 2000]
+  process :resize_and_convert
 
   version :frame do 
     process resize_to_fill: [2000, 100, ::Magick::NorthGravity]
@@ -64,8 +64,15 @@ class ThemeBackgroundUploader < CarrierWave::Uploader::Base
     end
   end
 
+  def resize_and_convert
+    manipulate! do |img|
+      img.format = 'JPEG'
+      img.resize_to_fit!(2000, 2000)
+    end
+  end
+
   def filename
-    super.chomp(File.extname(super)) + '.png' if original_filename.present?
+    super.chomp(File.extname(super)) + '.jpeg' if original_filename.present?
   end
 
   # Create different versions of your uploaded files:
@@ -81,8 +88,8 @@ class ThemeBackgroundUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
+  
   # def filename
-  #   "something.jpg" if original_filename
+  #   super.chomp(File.extname(super)) + '.png' if original_filename.present?
   # end
-
 end

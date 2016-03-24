@@ -9,27 +9,21 @@ class Theme < ActiveRecord::Base
   def create_zip
 
     filename = 'chrome-theme-'+name+'.zip'
-
     temp_file = Tempfile.new(filename)
-    zip_files = ['mainfest.json','theme_frame.png']
-
     manifest = Tempfile.new("manifest.json")
     manifest.write(create_manifest)
     manifest.rewind
 
     frame = open(URI.encode(theme_background.frame.url))
     toolbar = open(URI.encode(theme_background.toolbar.url))
-
     begin
       Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip|
         zip.add("manifest.json", manifest)
-        zip.add("images/theme_frame.png", frame)
-        zip.add("images/theme_toolbar.png", toolbar)
+        zip.add("images/theme_frame.jpeg", frame)
+        zip.add("images/theme_toolbar.jpeg", toolbar)
       end
-
       zip_data = File.read(temp_file.path)
       return zip_data
-
     ensure 
       manifest.close
       manifest.unlink
@@ -47,8 +41,8 @@ class Theme < ActiveRecord::Base
       "manifest_version":2,
       "theme":{
         "images":{
-          "theme_frame": "images\/theme_frame.png",
-          "theme_toolbar":"images\/theme_toolbar.png"
+          "theme_frame": "images\/theme_frame.jpeg",
+          "theme_toolbar":"images\/theme_toolbar.jpeg"
         },
         "colors":{
           "bookmark_text":[0, 0, 0],
