@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
     # resources :products
   resources :themes 
+  get 'themes/:id/download' => 'themes#download', as: :download
 
   # Example resource route with options:
   #   resources :products do

@@ -1,11 +1,9 @@
 class ThemesController < ApplicationController
-
 	before_action :authenticate_user!
 
 	def index 
 		@themes = Theme.all
 	end
-
 	def new 
 		@theme = Theme.new(user: current_user)
 	end
@@ -16,7 +14,7 @@ class ThemesController < ApplicationController
 
 		if @theme.save
 			redirect_to edit_theme_path(@theme)
-		else 
+		else
 			flash.now[:alert] = "There was a problem!"
 			render :new
 		end
@@ -28,7 +26,12 @@ class ThemesController < ApplicationController
 
 	def update
 		@theme = Theme.find(params[:id])
+	end
 
+	def download
+		@theme = Theme.find(params[:id])		
+		zip_data = @theme.create_zip
+	  send_data(zip_data, :type => 'application/zip', :filename => "theme.zip")
 	end
 
 	def destroy

@@ -32,6 +32,7 @@ class ThemeBackgroundUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  process convert: 'png'
   process resize_to_fit: [2000, 2000]
 
   version :frame do 
@@ -45,6 +46,7 @@ class ThemeBackgroundUploader < CarrierWave::Uploader::Base
   version :preview do 
     process :mask_chrome
   end
+
 
   def mask_chrome
     manipulate! do |img|
@@ -60,6 +62,10 @@ class ThemeBackgroundUploader < CarrierWave::Uploader::Base
     manipulate! do |img|
       img = img.crop(0, 200, 2000, 200)
     end
+  end
+
+  def filename
+    super.chomp(File.extname(super)) + '.png' if original_filename.present?
   end
 
   # Create different versions of your uploaded files:

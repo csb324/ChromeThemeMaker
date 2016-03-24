@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Theme do
-
+describe 'Theme' do
 	before(:each) do
 	  @user = User.new(email: "fake@fake.com", password: "fakepassword")
 	  @user.save

@@ -1,5 +1,6 @@
 <h1>Your Theme</h1>
 
+<%= link_to "download", download_path, class: "btn btn-primary" %>
 <p>full image:</p>
 <img src="<%= @theme.theme_background.url %>" alt="" class="theme-snapshot__image">
 
@@ -10,8 +11,10 @@
 <img src="<%= @theme.theme_background.frame.url %>" alt="" class="theme-snapshot__image">
 
 <p>preview:</p>
-<img src="<%= @theme.theme_background.preview.url %>" alt="">
+<img src="<%= @theme.theme_background.preview.url %>" alt="" class="theme-snapshot__image">
 <%= form_for @theme do |f| %>
 	<%= f.text_field :bookmark_text_color %>
 	<%= f.submit "Update" %>
 <% end %>
+
+<%= console %>

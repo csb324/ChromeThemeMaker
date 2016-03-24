@@ -30,6 +30,7 @@ describe ThemeBackgroundUploader do
   		expect(@uploader.toolbar).to have_dimensions(2000, 200)
   	end
   end
+
   context 'the frame version' do 
   	it "should be exactly 2000x100" do 
   		expect(@uploader.frame).to have_dimensions(2000, 100)

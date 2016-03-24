@@ -56,4 +56,6 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'carrierwave-aws'
 
+# Serve zip file
+gem 'rubyzip'
 
